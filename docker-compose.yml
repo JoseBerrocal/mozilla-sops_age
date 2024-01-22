@@ -23,17 +23,3 @@ services:
 volumes:
   db:
     driver: local
-
-
-
-
-# sudo apt-get update
-# sudo apt-get -y install age
-
-
-# docker-compose down
-# docker volume rm docker-compose_secret_db  
-# docker volume create docker-compose_secret_db  
-# docker-compose up -d 
-# mysql -u root -p -h 0.0.0.0 -P 3326
-# password122
