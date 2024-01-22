@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_svc
+    depends_on:
+      - sops
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Use the same variable name
+    ports:
+      - "8082:80"  # Map container port 80 to host port 8082
+      - "3326:3306" # Map container port 3306 to host port 3326 (example for MySQL)
+    volumes:
+      - db:/var/lib/mysql
+  sops:
+    build: .
+    image: sops_age:v1
+    container_name: sops_svc
+    command: ["sops", "--decrypt", "-i", "/variables/.env"]
+    volumes:
+      - ./:/variables
+      - ./decrypt/keys.txt:/root/.config/sops/age/keys.txt
+volumes:
+  db:
+    driver: local
+
+
+
+
+# sudo apt-get update
+# sudo apt-get -y install age
+
+
+# docker-compose down
+# docker volume rm docker-compose_secret_db  
+# docker volume create docker-compose_secret_db  
+# docker-compose up -d 
+# mysql -u root -p -h 0.0.0.0 -P 3326
+# password122
