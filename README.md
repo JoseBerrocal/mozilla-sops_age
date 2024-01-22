@@ -16,8 +16,8 @@ Test encryption and decryption of variables to be used by different services in 
 
 ### Cleaning variables and Key
 ```bash
-git clone
-cd xxx
+git clone git@github.com:JoseBerrocal/mozilla-sops_age.git
+cd mozilla-sops_age
 rm decrypt/keys.txt;
 echo "" > .env;
 ```
